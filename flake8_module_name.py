@@ -1,7 +1,7 @@
 import os
 import re
 
-__version__ = "0.1.3"
+__version__ = "0.1.4"
 
 PATTERN = "[^a-z_]"
 
@@ -19,6 +19,10 @@ class ModuleNameChecker(object):
     def __init__(self, tree, filename):
         self.filename = filename
 
+    @property
+    def template(self):
+        return "{} {{}}name should be all lower case".format(self.name)
+
     def run(self):
         base_name = os.path.basename(self.filename)
         fn, _ = os.path.splitext(base_name)
@@ -29,5 +33,5 @@ class ModuleNameChecker(object):
             typ = "file"
         valid = valid_pep8_filename(fn)
         if not valid:
-            message = "N999 {}name should be all lower case".format(typ)
+            message = self.template.format(typ)
             yield 0, 0, message, type(self)

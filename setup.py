@@ -7,7 +7,7 @@ from setuptools import find_packages, setup, Command
 
 NAME = "flake8_module_name"
 FILE = "{}.py".format(NAME)
-DESCRIPTION = ""
+DESCRIPTION = "A flake8 plugin for testing PEP-8 conform package and module names."
 URL = "https://github.com/ohjeah/flake8_module_name"
 EMAIL = "info@markusqua.de"
 AUTHOR = "Markus Quade"
