@@ -2,4 +2,9 @@
 
 ---
 
-[![](https://travis-ci.org/Ohjeah/flake8_module_name.svg?branch=master)](https://travis-ci.org/Ohjeah/flake8_module_name)
+[![](https://travis-ci.org/Ohjeah/flake8_module_name.svg?branch=master)](https://travis-ci.org/Ohjeah/flake8_module_name) [![PyPI](https://img.shields.io/pypi/v/flake8_module_name.svg)](https://pypi.python.org/pypi/flake8_module_name)
+
+
+**Install**
+
+`pip install flake8_module_name`
