@@ -6,6 +6,7 @@ from shutil import rmtree
 from setuptools import find_packages, setup, Command
 
 NAME = "flake8_module_name"
+FILE = "{}.py".format(NAME)
 DESCRIPTION = ""
 URL = "https://github.com/ohjeah/flake8_module_name"
 EMAIL = "info@markusqua.de"
@@ -14,7 +15,7 @@ AUTHOR = "Markus Quade"
 here = os.path.abspath(os.path.dirname(__file__))
 
 about = {}
-with open(os.path.join(here, "flake8_module_name.py")) as f:
+with open(os.path.join(here, FILE)) as f:
     exec(f.read(), about)
 
 
@@ -59,7 +60,7 @@ setup(
     author=AUTHOR,
     author_email=EMAIL,
     url=URL,
-    packages=find_packages(exclude=["test", "example"]),
+    py_modules=[NAME],
     install_requires=[],
     license="MIT",
     classifiers=[
@@ -71,6 +72,6 @@ setup(
         "publish": PublishCommand,
     },
     entry_points={
-        "flake8.extension": ["N999 = flake8_module_name:FileNameChecker"],
+        "flake8.extension": ["N999 = flake8_module_name:ModuleNameChecker"],
     },
 )

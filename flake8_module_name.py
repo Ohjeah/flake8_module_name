@@ -1,7 +1,7 @@
 import os
 import re
 
-__version__ = "0.1.0"
+__version__ = "0.1.3"
 
 PATTERN = "[^a-z_]"
 
@@ -11,7 +11,7 @@ def valid_pep8_filename(fname):
     return not bool(search(fname))
 
 
-class FileNameChecker(object):
+class ModuleNameChecker(object):
     """Checker of PEP-8 Module Name Conventions."""
     name = "module-naming"
     version = __version__
