@@ -1,4 +1,7 @@
+import os
+import random
 import subprocess
+import sys
 
 import pytest
 
@@ -22,5 +25,31 @@ def test_ModuleNameChecker(module_name, result):
 
 
 def test_end_to_end():
-    cmd = "pytest --flake8 flake8_module_name.py"
-    assert not bool(subprocess.Popen(cmd, shell=True).returncode)
+    cmd = "flake8 --ignore=N999, flake8_module_name.py"
+    proc = subprocess.Popen(cmd, shell=True)
+    proc.wait()
+    assert proc.returncode == 0
+
+
+
+
+@pytest.fixture()
+def failing_module():
+    for _ in range(100):
+        name = "MYMODULE{}.py".format(random.randint(0, sys.maxsize))
+        if not os.path.exists(name):
+            break
+    else:
+        pytest.skip()
+
+    with open(name, "w") as f:
+        os.utime(name, None)
+    yield name
+    os.remove(name)
+
+
+def test_end_to_end_failing_example(failing_module):
+    cmd = "pytest --flake8 {}".format(failing_module)
+    proc = subprocess.Popen(cmd, shell=True)
+    proc.wait()
+    assert proc.returncode == 1

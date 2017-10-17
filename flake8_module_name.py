@@ -1,11 +1,12 @@
 import os
 import re
 
-__version__ = "0.1.4"
+__version__ = "0.1.5"
 
 PATTERN = "[^a-z_]"
 
 search = re.compile(PATTERN).search
+
 
 def valid_pep8_filename(fname):
     return not bool(search(fname))
@@ -14,6 +15,7 @@ def valid_pep8_filename(fname):
 class ModuleNameChecker(object):
     """Checker of PEP-8 Module Name Conventions."""
     name = "module-naming"
+    code = "N999"
     version = __version__
 
     def __init__(self, tree, filename):
@@ -21,7 +23,7 @@ class ModuleNameChecker(object):
 
     @property
     def template(self):
-        return "{} {{}}name should be all lower case".format(self.name)
+        return "{} {{}}name should be all lower case".format(self.code)
 
     def run(self):
         base_name = os.path.basename(self.filename)
