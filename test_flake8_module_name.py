@@ -31,8 +31,6 @@ def test_end_to_end():
     assert proc.returncode == 0
 
 
-
-
 @pytest.fixture()
 def failing_module():
     for _ in range(100):
