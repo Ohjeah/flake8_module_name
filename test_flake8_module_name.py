@@ -9,13 +9,17 @@ from flake8_module_name import ModuleNameChecker
 from flake8_module_name import valid_pep8_filename
 
 
-@pytest.mark.parametrize("filename,result", [("module", True), ("MODULE", False)])
+@pytest.mark.parametrize("filename,result", [("module", True),
+                                             ("module123", True),
+                                             ("MODULE", False)
+                                             ])
 def test_valid_pep8_filename(filename, result):
     assert result == valid_pep8_filename(filename)
 
 
 @pytest.mark.parametrize("module_name,result", [("my_module.py", 0),
                                                 ("my_module/__init__.py", 0),
+                                                ("my_module/123_module.py", 0),
                                                 ("MYMODULE/__init__.py", 1),
                                                 ("MYMODULE.py", 1),
                                                 ])

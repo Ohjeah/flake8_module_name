@@ -3,7 +3,7 @@ import re
 
 __version__ = "0.1.5"
 
-PATTERN = "[^a-z_]"
+PATTERN = "[^0-9a-z_]"
 
 search = re.compile(PATTERN).search
 
